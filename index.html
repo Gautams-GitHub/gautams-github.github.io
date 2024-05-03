@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <link rel="manifest" href="https://raw.githubusercontent.com/Gautams-GitHub/sheets_as_api/main/manifest.json" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-8736325708786154">
+    <title>Shopping list example</title>
+    <style>
+      li {
+        margin-bottom: 10px;
+      }
+
+      li button {
+        font-size: 12px;
+        margin-left: 20px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>My shopping list</h1>
+
+    <div>
+      <label for="item">Enter a new item:</label>
+      <input type="text" name="item" id="item">
+      <button id="add">Add item</button>
+    </div>
+
+    <ul>
+
+    </ul>
+
+    <div>
+      <label for="college">Enter a college:</label>
+      <input type="text" name="college" id="college">
+      <button id='apiCall'>Call API</button>
+    </div>
+    <div id='listOfCollege'>
+      
+    </div>
+
+    <p>Iteration 3</p>
+    
+
+    <script>
+      
+      const list = document.querySelector('ul');
+      const input = document.getElementById('item');
+      const inputCollege = document.getElementById('college');      
+      const addButton = document.getElementById('add');
+      const apiButton = document.getElementById('apiCall');
+      const listOfCollege=document.getElementById('listOfCollege');
+
+      console.log('college', inputCollege.value);
+
+      apiButton.addEventListener('click',()=>{
+        listOfCollege.innerHTML = '';
+        const collegeName=inputCollege.value;
+        let url='';
+        if(collegeName&&collegeName.length>0){
+          url=`https://script.google.com/macros/s/AKfycbzlxw3OPo5jTiOLnRemB-7krKFdcC7-rpcWB6NwXDpUS5Vb4p-m2_z9ZLG9UxhB5A-x/exec?college=${collegeName}`;
+        }else{
+          url='https://script.google.com/macros/s/AKfycbzlxw3OPo5jTiOLnRemB-7krKFdcC7-rpcWB6NwXDpUS5Vb4p-m2_z9ZLG9UxhB5A-x/exec';
+        }
+        fetch(url)
+          .then(response => {
+                if (!response.ok) {
+                  throw new Error(`HTTP error: ${response.status}`);
+                }              
+                return response.json();}
+              ).then( json => {console.log({json});
+                               console.log({json:json.data});
+                              
+                                const listOfCollegeVal = json.data.map((item,index) => {
+                                                        const div = document.createElement('div');
+                                                        div.id = 'college'+index;
+                                                        div.textContent = index+1+'. '+item.college;
+                                                        return div;
+                                                    });                             
+                                                    listOfCollege.append(...listOfCollegeVal);
+
+                              } 
+                    )
+              .catch( err => console.error(`Fetch problem: ${err.message}`) );
+      })
+                  
+
+      addButton.addEventListener('click', () => {
+        const myItem = input.value;
+        input.value = '';
+
+        const listItem = document.createElement('li');
+        const listText = document.createElement('span');
+        const listBtn = document.createElement('button');
+
+        listItem.appendChild(listText);
+        listText.textContent = myItem;
+        listItem.appendChild(listBtn);
+        listBtn.textContent = 'Delete';
+        list.appendChild(listItem);
+
+        listBtn.addEventListener('click', () => {
+          list.removeChild(listItem);
+        });
+
+        input.focus();
+      });
+
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js')
+      .then((registration) => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch((error) => {
+        console.error('Service Worker registration failed:', error);
+      });
+      }
+    </script>
+  </body>
+</html>
