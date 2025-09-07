@@ -1,112 +1,177 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <link rel="manifest" href="https://raw.githubusercontent.com/Gautams-GitHub/sheets_as_api/main/manifest.json" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-adsense-account" content="ca-pub-8736325708786154">
-    <title>Shopping list example</title>
-    <style>
-      li {
-        margin-bottom: 10px;
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Table to Cards</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 20px;
+      background: #f9fafb;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Table styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+    }
+
+    th {
+      background: #f3f4f6;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background: #fafafa;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Chips for tags */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      background: #e0e7ff;
+      color: #3730a3;
+      padding: 4px 10px;
+      font-size: 0.85rem;
+      border-radius: 9999px;
+      white-space: nowrap;
+    }
+
+    /* Card layout for small screens */
+    .cards {
+      display: none;
+      gap: 16px;
+      flex-direction: column;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    .card p {
+      margin: 0 0 10px;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* Responsive switch */
+    @media (max-width: 768px) {
+      table {
+        display: none;
       }
-
-      li button {
-        font-size: 12px;
-        margin-left: 20px;
-        color: #666;
+      .cards {
+        display: flex;
       }
-    </style>
-  </head>
-  <body>
+    }
+  </style>
+</head>
+<body>
+  <h2>Useful Resources</h2>
 
-    <h1>Check College</h1>
+  <!-- Table View -->
+  <table>
+    <thead>
+      <tr>
+        <th>Link</th>
+        <th>Description</th>
+        <th>Tags</th>
+      </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+  </table>
 
-    <div>
-      <label for="college">Enter a college:</label>
-      <input type="text" name="college" id="college">
-      <button id='apiCall'>Call API</button>
-    </div>
-    <div id='listOfCollege'>
-      
-    </div>
+  <!-- Cards View -->
+  <div class="cards" id="cards"></div>
 
-    <p>Iteration 3</p>
-    
-
-    <script>
-      
-      const list = document.querySelector('ul');
-      const input = document.getElementById('item');
-      const inputCollege = document.getElementById('college');      
-      const addButton = document.getElementById('add');
-      const apiButton = document.getElementById('apiCall');
-      const listOfCollege=document.getElementById('listOfCollege');
-
-      console.log('college', inputCollege.value);
-
-      apiButton.addEventListener('click',()=>{
-        listOfCollege.innerHTML = '';
-        const collegeName=inputCollege.value;
-        let url='';
-        if(collegeName&&collegeName.length>0){
-          url=`https://script.google.com/macros/s/AKfycbzlxw3OPo5jTiOLnRemB-7krKFdcC7-rpcWB6NwXDpUS5Vb4p-m2_z9ZLG9UxhB5A-x/exec?college=${collegeName}`;
-        }else{
-          url='https://script.google.com/macros/s/AKfycbzlxw3OPo5jTiOLnRemB-7krKFdcC7-rpcWB6NwXDpUS5Vb4p-m2_z9ZLG9UxhB5A-x/exec';
-        }
-        fetch(url)
-          .then(response => {
-                if (!response.ok) {
-                  throw new Error(`HTTP error: ${response.status}`);
-                }              
-                return response.json();}
-              ).then( json => {console.log({json});
-                               console.log({json:json.data});
-                              
-                                const listOfCollegeVal = json.data.map((item,index) => {
-                                                        const div = document.createElement('div');
-                                                        div.id = 'college'+index;
-                                                        div.textContent = index+1+'. '+item.college;
-                                                        return div;
-                                                    });                             
-                                                    listOfCollege.append(...listOfCollegeVal);
-
-                              } 
-                    )
-              .catch( err => console.error(`Fetch problem: ${err.message}`) );
-      })
-                  
-
-      addButton.addEventListener('click', () => {
-        const myItem = input.value;
-        input.value = '';
-
-        const listItem = document.createElement('li');
-        const listText = document.createElement('span');
-        const listBtn = document.createElement('button');
-
-        listItem.appendChild(listText);
-        listText.textContent = myItem;
-        listItem.appendChild(listBtn);
-        listBtn.textContent = 'Delete';
-        list.appendChild(listItem);
-
-        listBtn.addEventListener('click', () => {
-          list.removeChild(listItem);
-        });
-
-        input.focus();
-      });
-
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./sw.js')
-      .then((registration) => {
-        console.log('Service Worker registered with scope:', registration.scope);
-      })
-      .catch((error) => {
-        console.error('Service Worker registration failed:', error);
-      });
+  <script>
+    const data = [
+      {
+        link: "https://developer.mozilla.org/",
+        title: "MDN Web Docs",
+        description: "Comprehensive resource for web developers with documentation and guides.",
+        tags: ["HTML", "CSS", "JavaScript"]
+      },
+      {
+        link: "https://css-tricks.com/",
+        title: "CSS Tricks",
+        description: "Tips, tricks, and techniques for using Cascading Style Sheets.",
+        tags: ["CSS", "Frontend", "Design"]
+      },
+      {
+        link: "https://stackoverflow.com/",
+        title: "Stack Overflow",
+        description: "Community of developers asking and answering programming questions.",
+        tags: ["Community", "Q&A", "Coding"]
       }
-    </script>
-  </body>
+    ];
+
+    const tableBody = document.getElementById("table-body");
+    const cards = document.getElementById("cards");
+
+    data.forEach(item => {
+      // Table row
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><a href="${item.link}" target="_blank">${item.title}</a></td>
+        <td>${item.description}</td>
+        <td>
+          <div class="chips">
+            ${item.tags.map(tag => `<span class="chip">${tag}</span>`).join("")}
+          </div>
+        </td>
+      `;
+      tableBody.appendChild(tr);
+
+      // Card
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+        <p>${item.description}</p>
+        <div class="chips">
+          ${item.tags.map(tag => `<span class="chip">${tag}</span>`).join("")}
+        </div>
+      `;
+      cards.appendChild(card);
+    });
+  </script>
+</body>
 </html>
