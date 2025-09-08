@@ -54,11 +54,42 @@ export const ALL_URLS = [
         tags: ["TBD"]
     },
     {
-        link: "example.com",
-        title: "TBD",
+        link: "https://first-person-view-mo-4ogk.bolt.host/",
+        title: "FPV_Experiment",
         description: "TBD",
         tags: ["TBD"]
     },
+    {
+        link: "https://production-ready-blo-tn28.bolt.host/",
+        title: "Blogs",
+        description: "TBD",
+        tags: ["TBD"]
+    },
+    {
+        link: "https://lively-halva-421821.netlify.app/",
+        title: "",
+        description: "TBD",
+        tags: ["TBD"]
+    },
+    // {
+    //     link: "",
+    //     title: "",
+    //     description: "TBD",
+    //     tags: ["TBD"]
+    // },
+    // {
+    //     link: "",
+    //     title: "",
+    //     description: "TBD",
+    //     tags: ["TBD"]
+    // },
+    
+    // {
+    //     link: "",
+    //     title: "",
+    //     description: "TBD",
+    //     tags: ["TBD"]
+    // },
 ]
 
 
