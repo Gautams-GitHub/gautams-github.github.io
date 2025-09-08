@@ -1,4 +1,4 @@
-import data from "./ALL_URLS";
+import data from "./ALL_URLS.js";
 
 
 const tableBody = document.getElementById("table-body");
