@@ -1,0 +1,65 @@
+export const ALL_URLS = [
+    {
+        link: "github.com/Gautams-GitHub",
+        title: "github.com/Gautams-GitHub",
+        description: "TBD",
+        tags: ["TBD"]
+    },
+    {
+        link: "gautams-github.github.io/",
+        title: "gautams-github.github.io/",
+        description: "TBD",
+        tags: ["TBD"]
+    },
+    {
+        link: "https://gautams-github.github.io/gamified_to_do/",
+        title: "https://gautams-github.github.io/gamified_to_do/",
+        description: "TBD",
+        tags: ["TBD"]
+    },
+    {
+        link: "https://gautams-github.github.io/FPV_Experiment/",
+        title: "https://gautams-github.github.io/FPV_Experiment/",
+        description: "TBD",
+        tags: ["TBD"]
+    },
+    {
+        link: "https://gautams-github.github.io/screen-recorder/",
+        title: "https://gautams-github.github.io/screen-recorder/",
+        description: "TBD",
+        tags: ["TBD"]
+    },
+    {
+        link: "https://gautams-github.github.io/screen-recorder-v1/",
+        title: "https://gautams-github.github.io/screen-recorder-v1/",
+        description: "TBD",
+        tags: ["TBD"]
+    },
+    {
+        link: "https://gautams-github.github.io/simple-swipe--card/",
+        title: "https://gautams-github.github.io/simple-swipe--card/",
+        description: "TBD",
+        tags: ["TBD"]
+    },
+    {
+        link: "https://gautams-github.github.io/swipable-cards/",
+        title: "https://gautams-github.github.io/swipable-cards/",
+        description: "TBD",
+        tags: ["TBD"]
+    },
+    {
+        link: "https://gautams-github.github.io/cards-pwa/",
+        title: "https://gautams-github.github.io/cards-pwa/",
+        description: "TBD",
+        tags: ["TBD"]
+    },
+    {
+        link: "example.com",
+        title: "TBD",
+        description: "TBD",
+        tags: ["TBD"]
+    },
+]
+
+
+export default ALL_URLS;
