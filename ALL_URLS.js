@@ -67,7 +67,7 @@ export const ALL_URLS = [
     },
     {
         link: "https://lively-halva-421821.netlify.app/",
-        title: "",
+        title: "Drag and Drop",
         description: "TBD",
         tags: ["TBD"]
     },
