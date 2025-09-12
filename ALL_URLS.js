@@ -71,12 +71,12 @@ export const ALL_URLS = [
         description: "TBD",
         tags: ["TBD"]
     },
-    // {
-    //     link: "",
-    //     title: "",
-    //     description: "TBD",
-    //     tags: ["TBD"]
-    // },
+    {
+        link: "https://css-effects-and-anim-fkz1.bolt.host/",
+        title: "CSS Animation Play",
+        description: "TBD",
+        tags: ["TBD"]
+    },
     // {
     //     link: "",
     //     title: "",
