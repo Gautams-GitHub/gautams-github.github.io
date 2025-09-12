@@ -10,6 +10,42 @@ h2 {
   margin-bottom: 20px;
 }
 
+/* Tabs */
+.tabs {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.tab-button {
+  background: #eef2ff;
+  border: 1px solid #e5e7eb;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #111827;
+}
+
+.tab-button.active {
+  background: #6366f1;
+  color: white;
+  border-color: #6366f1;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
 /* Table styles */
 table {
   width: 100%;

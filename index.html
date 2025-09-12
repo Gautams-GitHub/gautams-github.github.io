@@ -9,29 +9,48 @@
 </head>
 
 <body>
-  <nav style="margin-bottom: 16px;">
-    <a href="index.html">Home</a>
-    |
-    <a href="experiences.html">Previous Experiences</a>
-  </nav>
-  <h2>Useful Resources</h2>
+  <div class="tabs">
+    <div class="tab-buttons">
+      <button class="tab-button active" data-tab="links">Useful Links</button>
+      <button class="tab-button" data-tab="experiences">Previous Experiences</button>
+    </div>
 
-  <!-- Table View -->
-  <table>
-    <thead>
-      <tr>
-        <th>Link</th>
-        <th>Description</th>
-        <th>Tags</th>
-      </tr>
-    </thead>
-    <tbody id="table-body"></tbody>
-  </table>
+    <div class="tab-panels">
+      <section id="tab-links" class="tab-panel active" aria-labelledby="links">
+        <h2>Useful Resources</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Link</th>
+              <th>Description</th>
+              <th>Tags</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+        <div class="cards" id="cards"></div>
+      </section>
 
-  <!-- Cards View -->
-  <div class="cards" id="cards"></div>
+      <section id="tab-experiences" class="tab-panel" aria-labelledby="experiences">
+        <h2>Previous Experiences</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Description</th>
+              <th>Tags</th>
+            </tr>
+          </thead>
+          <tbody id="exp-table-body"></tbody>
+        </table>
+        <div class="cards" id="exp-cards"></div>
+      </section>
+    </div>
+  </div>
 
   <script type="module" src="main.js"></script>
+  <script type="module" src="experiences_tab.js"></script>
+  <script src="tabs.js"></script>
 </body>
 
 </html>
